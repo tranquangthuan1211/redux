@@ -30,9 +30,15 @@ const rootReducer = (state = initState, action) => {
                 todoList: state.todoList.map(todo => todo.id === action.payload.id ? action.payload : todo)
             }
         case 'FILTER_TODO':
+            // console.log('action.payload', action.payload)
             return {
                 ...state,
-                filters: action.payload
+                filters: {
+                    ...state.filters,
+                    search: action.payload.search,
+                    status: action.payload.status,
+                    priority: action.payload.priority
+                }
             }
         default:
             return state
